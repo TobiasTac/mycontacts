@@ -12,6 +12,7 @@ import { ButtonContainer, Form } from './styles';
 
 import FormGroup from '../FormGroup';
 
+import useSafeAsyncState from '../../hooks/useSafeAsyncState';
 import Button from '../Button';
 import Input from '../Input';
 import Select from '../Select';
@@ -21,8 +22,8 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [categoryId, setCategoryId] = useState('');
-  const [categories, setCategories] = useState([]);
-  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  const [categories, setCategories] = useSafeAsyncState([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useSafeAsyncState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
@@ -61,7 +62,7 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
     }
 
     loadCategories();
-  }, []);
+  }, [setCategories, setIsLoadingCategories]);
 
   function handleNameChange(event) {
     setName(event.target.value);
