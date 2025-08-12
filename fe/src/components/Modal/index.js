@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { useEffect, useRef, useState } from 'react';
 import { Container, Footer, Overlay } from './styles';
 
+import useAnimatedOut from '../../hooks/useAnimatedOut';
 import Button from '../Button';
 import ReactPortal from '../ReactPortal';
 
@@ -17,30 +17,7 @@ export default function Modal({
   onCancel,
   onConfirm,
 }) {
-  const [shouldRender, setShouldRender] = useState(visible);
-
-  const overlayRef = useRef(null);
-
-  useEffect(() => {
-    if (visible) {
-      setShouldRender(true);
-    }
-
-    function handleAnimationEnd() {
-      setShouldRender(false);
-    }
-
-    const overlatRefElement = overlayRef.current;
-    if (!visible && overlayRef.current) {
-      overlatRefElement.addEventListener('animationend', handleAnimationEnd);
-    }
-
-    return () => {
-      if (overlatRefElement) {
-        overlatRefElement.removeEventListener('animationend', handleAnimationEnd);
-      }
-    };
-  }, [visible]);
+  const { shouldRender, animatedElementRef } = useAnimatedOut(visible);
 
   if (!shouldRender) {
     return null;
@@ -48,7 +25,7 @@ export default function Modal({
 
   return (
     <ReactPortal containerId="modal-root">
-      <Overlay $isLeaving={visible} ref={overlayRef}>
+      <Overlay $isLeaving={visible} ref={animatedElementRef}>
         <Container $danger={danger} $isLeaving={visible}>
           <h1>{title}</h1>
 
