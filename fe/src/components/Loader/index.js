@@ -4,10 +4,10 @@ import ReactPortal from '../ReactPortal';
 import Spinner from '../Spinner';
 import { Overlay } from './styles';
 
-import useAnimatedOut from '../../hooks/useAnimatedOut';
+import useAnimatedUnmount from '../../hooks/useAnimatedUnmount';
 
 export default function Loader({ isLoading }) {
-  const { shouldRender, animatedElementRef } = useAnimatedOut(isLoading);
+  const { shouldRender, animatedElementRef } = useAnimatedUnmount(isLoading);
 
   if (!shouldRender) {
     return null;

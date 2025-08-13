@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function useAnimatedOut(visible) {
+export default function useAnimatedUnmount(visible) {
   const [shouldRender, setShouldRender] = useState(visible);
 
   const animatedElementRef = useRef(null);

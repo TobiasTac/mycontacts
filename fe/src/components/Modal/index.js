@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { Container, Footer, Overlay } from './styles';
 
-import useAnimatedOut from '../../hooks/useAnimatedOut';
+import useAnimatedUnmount from '../../hooks/useAnimatedUnmount';
 import Button from '../Button';
 import ReactPortal from '../ReactPortal';
 
@@ -17,7 +17,7 @@ export default function Modal({
   onCancel,
   onConfirm,
 }) {
-  const { shouldRender, animatedElementRef } = useAnimatedOut(visible);
+  const { shouldRender, animatedElementRef } = useAnimatedUnmount(visible);
 
   if (!shouldRender) {
     return null;
