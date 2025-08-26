@@ -72,7 +72,7 @@ export default function Home() {
             onCancel={handleCloseDeleteModal}
             onConfirm={handleConfirmDeleteContact}
           >
-            <p> Esta ação não poderá ser desfeita! </p>
+            <p>Esta ação não poderá ser desfeita!</p>
           </Modal>
         </>
       )}
