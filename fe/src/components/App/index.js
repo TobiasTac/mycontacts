@@ -1,14 +1,14 @@
-import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import GlobalStyles from '../../assets/styles/global';
 import defaultTheme from '../../assets/styles/themes/default';
 
-import Routes from '../../Routes';
 import Header from '../Header';
 
 import { Container } from './styles';
 
+import Router from '../../Router';
 import ToastContainer from '../Toast/ToastContainer';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
         <Container>
           <Header />
-          <Routes />
+          <Router />
         </Container>
       </ThemeProvider>
     </BrowserRouter>
